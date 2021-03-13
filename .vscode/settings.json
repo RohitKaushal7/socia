@@ -1,0 +1,16 @@
+{
+  // Formatter
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript,javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  //Prettier
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2,
+
+  // Tailwind.css
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "jsx"
+  }
+}
