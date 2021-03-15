@@ -7,7 +7,81 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
-  id   Int    @id @default(autoincrement())
-  name String
+// MODELS
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  password String
+  name     String?
+  username String
+  role     Role    @default(USER)
+  privacy  Privacy @default(PUBLIC)
+
+  posts     Post[]
+  followers Follow[]  @relation("followedByUser")
+  following Follow[]  @relation("followedUser")
+  likes     Like[]
+  comments  Comment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Post {
+  id        Int     @id @default(autoincrement())
+  text      String  @db.Text
+  published Boolean @default(false)
+  privacy   Privacy @default(PUBLIC)
+
+
+  likes    Like[]
+  comments Comment[]
+
+  user   User? @relation(fields: [userId], references: [id])
+  userId Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Follow {
+  id Int @id @default(autoincrement())
+
+  userId Int
+  user   User @relation("followedUser", fields: [userId], references: [id])
+
+  followedById   Int
+  followedByUser User @relation("followedByUser", fields: [followedById], references: [id])
+
+}
+
+model Like {
+  id     Int @id @default(autoincrement())
+  postId Int
+  userId Int
+
+  post Post @relation(fields: [postId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Comment {
+  id     Int    @id @default(autoincrement())
+  postId Int
+  userId Int
+  text   String @db.Text
+
+  post Post @relation(fields: [postId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
+
+// ENUM
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Privacy {
+  PRIVATE
+  PUBLIC
 }

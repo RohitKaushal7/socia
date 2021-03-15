@@ -4,6 +4,9 @@
   "[javascript,javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
   "editor.formatOnSave": true,
   //Prettier
   "prettier.useTabs": false,
