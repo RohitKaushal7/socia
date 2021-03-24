@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import Home from "./containers/Home";
-import Login from "./containers/Login";
+import Auth from "./containers/Auth";
 import { useAppContext } from "./context/AppContext";
+import Profile from "./containers/Profile";
 
 export default function App() {
-  const { authToken, setAuthToken } = useAppContext();
+  const { authToken, setAuthToken, setCurrentUser } = useAppContext();
 
   useEffect(() => {
     let token = localStorage.getItem("authToken");
@@ -14,6 +15,7 @@ export default function App() {
       if (token) {
         if (token.exp > new Date().getTime()) {
           setAuthToken(token.token);
+          setCurrentUser(token.user);
         } else {
           console.log("token Expired");
         }
@@ -26,7 +28,26 @@ export default function App() {
   return (
     <BrowserRouter>
       <Route exact path="/" component={Home} />
-      <Route exact path="/login" component={Login} />
+      {authToken ? (
+        <>
+          <Route exact path="/profile" component={Profile} />
+        </>
+      ) : (
+        <>
+          <Route exact path="/auth" component={Auth} />
+        </>
+      )}
+
+      <Route
+        path="/"
+        component={() => {
+          if (authToken) {
+            return <Redirect to="/profile" />;
+          } else {
+            return <Redirect to="/auth" />;
+          }
+        }}
+      />
     </BrowserRouter>
   );
 }
