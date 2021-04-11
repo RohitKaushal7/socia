@@ -1,11 +1,17 @@
 const db = require("../prisma/db");
+const { parseResolveInfo } = require("graphql-parse-resolve-info");
 
 // QUERIES
-exports.getFollows = async (root, args, context) => {
+exports.getFollows = async (root, args, context, info) => {
+  let resolveInfo = parseResolveInfo(info).fieldsByTypeName;
+  let include = {};
+  if (resolveInfo.Follow.user) include.user = {};
+
   return await db.follow.findMany({
     where: {
       ...args.input,
     },
+    include,
   });
 };
 

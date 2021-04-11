@@ -10,10 +10,23 @@ exports.getPosts = async (root, args, context, info) => {
   if (resolveInfo.Post.comments) include.comments = {};
   if (resolveInfo.Post.likes) include.likes = {};
 
+  let where = {};
+  where.id = args.input.id;
+  if (args.input.isFollowing) {
+    let follwingList = await db.follow.findMany({
+      where: { followedById: context.user.id },
+    });
+
+    if (follwingList) {
+      follwingList = follwingList.map((f) => f.userId);
+      where.userId = {
+        in: follwingList,
+      };
+    }
+  }
+
   return await db.post.findMany({
-    where: {
-      ...args.input,
-    },
+    where,
     include,
   });
 };

@@ -85,6 +85,7 @@ module.exports = gql`
     text: String
     published: Boolean
     privacy: Privacy
+    isFollowing: Boolean
   }
   input UserInput {
     id: Int
