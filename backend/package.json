@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
     "graphql": "^15.5.0",
+    "graphql-parse-resolve-info": "^4.11.0",
     "graphql-tools": "^7.0.4",
     "jsonwebtoken": "^8.5.1",
     "node-fetch": "^2.6.1",
