@@ -14,6 +14,7 @@ model User {
   password          String
   name              String?
   username          String?
+  bio               String? @db.Text
   profilePictureUrl String?
   role              Role    @default(USER)
   privacy           Privacy @default(PUBLIC)

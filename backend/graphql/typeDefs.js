@@ -31,6 +31,8 @@ module.exports = gql`
     password: String
     name: String
     username: String
+    profilePictureUrl: String
+    bio: String
     role: Role
     privacy: Privacy
     posts: [Post]
@@ -82,6 +84,7 @@ module.exports = gql`
 
   input PostInput {
     id: Int
+    userId: Int
     text: String
     published: Boolean
     privacy: Privacy
@@ -92,6 +95,7 @@ module.exports = gql`
     username: String
     email: String
     name: String
+    bio: String
     privacy: Privacy
     profilePictureUrl: String
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
-import { createAccount, getAuthToken } from "../../../../api-hooks/auth";
+import { createAccount, getAuthToken } from "../../../../services/api/auth";
 import { useAppContext } from "../../../../context/AppContext";
 
 export default function SignUpForm() {

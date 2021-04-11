@@ -14,6 +14,7 @@ exports.getPosts = async (root, args, context, info) => {
 
   let where = {};
   where.id = args.input.id;
+  where.userId = args.input.userId;
   if (args.input.isFollowing) {
     let follwingList = await db.follow.findMany({
       where: { followedById: context.user.id },

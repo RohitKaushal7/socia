@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
-import { getAuthToken } from "../../../../api-hooks/auth";
+import { getAuthToken } from "../../../../services/api/auth";
 import { useAppContext } from "../../../../context/AppContext";
 
 export default function SignInForm() {

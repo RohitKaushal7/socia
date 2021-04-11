@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "../config/constants";
+import { API_BASE_URL } from "../../config/constants";
 
 export const getAuthToken = async (email, password) => {
   const response = await fetch(API_BASE_URL + "/auth", {
