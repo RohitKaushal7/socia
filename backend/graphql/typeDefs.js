@@ -91,6 +91,9 @@ module.exports = gql`
     id: Int
     username: String
     email: String
+    name: String
+    privacy: Privacy
+    profilePictureUrl: String
   }
   input CommentInput {
     id: Int
