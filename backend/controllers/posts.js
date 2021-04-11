@@ -10,6 +10,8 @@ exports.getPosts = async (root, args, context, info) => {
   if (resolveInfo.Post.comments) include.comments = {};
   if (resolveInfo.Post.likes) include.likes = {};
 
+  include = Object.keys(include).length ? include : undefined;
+
   let where = {};
   where.id = args.input.id;
   if (args.input.isFollowing) {

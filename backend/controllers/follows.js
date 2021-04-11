@@ -6,6 +6,7 @@ exports.getFollows = async (root, args, context, info) => {
   let resolveInfo = parseResolveInfo(info).fieldsByTypeName;
   let include = {};
   if (resolveInfo.Follow.user) include.user = {};
+  include = Object.keys(include).length ? include : undefined;
 
   return await db.follow.findMany({
     where: {
