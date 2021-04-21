@@ -20,8 +20,8 @@ model User {
   privacy           Privacy @default(PUBLIC)
 
   posts     Post[]
-  followers Follow[]  @relation("followedByUser")
-  following Follow[]  @relation("followedUser")
+  followers Follow[]  @relation("followedUser")
+  following Follow[]  @relation("followedByUser")
   likes     Like[]
   comments  Comment[]
 

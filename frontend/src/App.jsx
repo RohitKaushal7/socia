@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Redirect, Route } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Home from "./containers/Home";
 import Auth from "./containers/Auth";
 import { useAppContext } from "./context/AppContext";
@@ -18,6 +18,7 @@ export default function App() {
           setCurrentUser(token.user);
         } else {
           console.log("token Expired");
+          localStorage.removeItem("authToken");
         }
       }
     } catch (err) {
@@ -27,27 +28,16 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <Route exact path="/" component={Home} />
-      {authToken ? (
-        <>
-          <Route exact path="/profile" component={Profile} />
-        </>
-      ) : (
-        <>
-          <Route exact path="/auth" component={Auth} />
-        </>
-      )}
+      <Switch>
+        <Route exact path="/" component={Home} />
 
-      <Route
-        path="/"
-        component={() => {
-          if (authToken) {
-            return <Redirect to="/profile" />;
-          } else {
-            return <Redirect to="/auth" />;
-          }
-        }}
-      />
+        {!authToken && <Route exact path="/auth" component={Auth} />}
+
+        {authToken && <Route exact path="/profile" component={Profile} />}
+
+        {/* 404 to Home */}
+        {/* <Redirect to="/" /> */}
+      </Switch>
     </BrowserRouter>
   );
 }

@@ -10,6 +10,9 @@ module.exports = gql`
   }
 
   type Mutation {
+    updateUser(input: UserInput): User
+    deleteUser(input: UserInput): Int
+
     createPost(input: PostInput): Post
     updatePost(input: PostInput): Post
     deletePost(input: PostInput): Int

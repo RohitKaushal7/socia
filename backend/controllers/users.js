@@ -27,3 +27,48 @@ exports.getUsers = async (root, args, context, info) => {
     include,
   });
 };
+
+exports.updateUser = async (root, args, context, info) => {
+  try {
+    let user = await db.user.findUnique({ where: { id: args.input.id } });
+    if (!user) {
+      throw new Error(`NOT_EXISTS`);
+    }
+    if (user.id != context.user.id) {
+      throw new Error(`UNAUTHORIZED`);
+    }
+
+    return await db.user.update({
+      where: {
+        id: args.input.id,
+      },
+      data: {
+        name: args.input.name,
+        bio: args.input.bio,
+        profilePictureUrl: args.input.profilePictureUrl,
+        privacy: args.input.privacy,
+      },
+    });
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+exports.deleteUser = async (root, args, context) => {
+  try {
+    let user = await db.user.findUnique({ where: { id: args.input.id } });
+    if (!user) {
+      throw new Error(`NOT_EXISTS`);
+    }
+    if (user.id != context.user.id) {
+      throw new Error(`UNAUTHORIZED`);
+    }
+
+    let { count } = await db.user.deleteMany({
+      where: { id: user.id },
+    });
+    return count;
+  } catch (err) {
+    throw new Error(err);
+  }
+};

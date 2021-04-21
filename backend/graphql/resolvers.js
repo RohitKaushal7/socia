@@ -15,6 +15,9 @@ module.exports = {
     follows: authenticated(follows.getFollows),
   },
   Mutation: {
+    updateUser: authenticated(users.updateUser),
+    deleteUser: authenticated(users.deleteUser),
+
     createPost: authenticated(posts.createPost),
     updatePost: authenticated(posts.updatePost),
     deletePost: authenticated(posts.deletePost),

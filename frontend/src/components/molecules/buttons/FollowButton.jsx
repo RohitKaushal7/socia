@@ -1,5 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function FollowButton(props) {
-  return <button {...props}>Follow</button>;
+  return <button {...props}>Follow </button>;
 }

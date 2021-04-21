@@ -59,7 +59,11 @@ exports.updatePost = async (root, args, context) => {
 
     post = await db.post.update({
       where: { id: args.input.id },
-      data: { ...args.input },
+      data: {
+        text: args.input.text,
+        published: args.input.published,
+        privacy: args.input.privacy,
+      },
     });
     return post;
   } catch (err) {

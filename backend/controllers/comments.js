@@ -39,7 +39,9 @@ exports.updateComment = async (root, args, context) => {
 
     comment = await db.comment.update({
       where: { id: args.input.id },
-      data: { ...args.input },
+      data: {
+        text: args.input.text,
+      },
     });
     return comment;
   } catch (err) {

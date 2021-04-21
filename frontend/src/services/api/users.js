@@ -8,6 +8,7 @@ export const getUser = async ({ userId, username }, AUTH_TOKEN) => {
         id
         name
         username
+        bio
         email
         profilePictureUrl
       }
@@ -16,6 +17,28 @@ export const getUser = async ({ userId, username }, AUTH_TOKEN) => {
 
   return graph(QUERY, AUTH_TOKEN, {
     input: {
+      id: userId,
+    },
+  });
+};
+
+export const updateUser = async ({ userId, data }, AUTH_TOKEN) => {
+  const QUERY = gql`
+    mutation updateUser($input: UserInput) {
+      updateUser(input: $input) {
+        id
+        name
+        username
+        bio
+        email
+        profilePictureUrl
+      }
+    }
+  `;
+
+  return graph(QUERY, AUTH_TOKEN, {
+    input: {
+      ...data,
       id: userId,
     },
   });
