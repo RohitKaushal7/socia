@@ -29,7 +29,7 @@ export default function Profile() {
         <header className="p-4 py-16 flex justify-between items-center">
           <div className="user flex items-center justify-between">
             <div className="info ml-5">
-              <div className="name"></div>
+              <div className="name text-xl">{user.name}</div>
               <div className="email text-gray-400">{user.email}</div>
             </div>
           </div>
@@ -56,7 +56,7 @@ export default function Profile() {
                 <div className="name text-2xl">{user.name}</div>
                 {/* <div className="username text-gray-200">@rohitkaushal</div> */}
                 <div className="actions py-4">
-                  <FollowButton className="text-blue-400" />
+                  {/* <FollowButton className="text-blue-400" /> */}
                 </div>
                 <div className="bio max-w-4xl py-4 text-center">{user.bio}</div>
               </div>

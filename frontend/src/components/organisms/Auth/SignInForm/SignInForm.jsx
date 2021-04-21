@@ -2,9 +2,11 @@ import React from "react";
 import { Formik } from "formik";
 import { getAuthToken } from "../../../../services/api/auth";
 import { useAppContext } from "../../../../context/AppContext";
+import { useHistory } from "react-router";
 
 export default function SignInForm() {
   const { authToken, setAuthToken, setCurrentUser } = useAppContext();
+  const history = useHistory();
 
   return (
     <Formik
@@ -38,6 +40,7 @@ export default function SignInForm() {
                 user,
               })
             );
+            history.push("/");
           })
           .catch((err) => {
             console.log(err.message);

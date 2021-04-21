@@ -32,9 +32,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/">
+          {authToken ? <Redirect to="/feed" /> : <Auth />}
+        </Route>
 
-        {!authToken && <Route exact path="/auth" component={Auth} />}
+        <Route exact path="/auth" component={Auth} />
 
         {authToken && <Route exact path="/profile" component={Profile} />}
         {authToken && (
@@ -42,9 +44,6 @@ export default function App() {
         )}
         {authToken && <Route exact path="/post/:id" component={PostScreen} />}
         {authToken && <Route exact path="/feed" component={FeedScreen} />}
-
-        {/* 404 to Home */}
-        {/* <Redirect to="/" /> */}
       </Switch>
     </BrowserRouter>
   );
