@@ -31,6 +31,11 @@ exports.getPosts = async (root, args, context, info) => {
   return await db.post.findMany({
     where,
     include,
+    orderBy: [
+      {
+        createdAt: "desc",
+      },
+    ],
   });
 };
 

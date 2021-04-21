@@ -4,6 +4,9 @@ import Home from "./containers/Home";
 import Auth from "./containers/Auth";
 import { useAppContext } from "./context/AppContext";
 import Profile from "./containers/Profile";
+import CreatePostScreen from "./containers/CreatePostScreen";
+import PostScreen from "./containers/PostScreen";
+import FeedScreen from "./containers/FeedScreen";
 
 export default function App() {
   const { authToken, setAuthToken, setCurrentUser } = useAppContext();
@@ -34,6 +37,11 @@ export default function App() {
         {!authToken && <Route exact path="/auth" component={Auth} />}
 
         {authToken && <Route exact path="/profile" component={Profile} />}
+        {authToken && (
+          <Route exact path="/create" component={CreatePostScreen} />
+        )}
+        {authToken && <Route exact path="/post/:id" component={PostScreen} />}
+        {authToken && <Route exact path="/feed" component={FeedScreen} />}
 
         {/* 404 to Home */}
         {/* <Redirect to="/" /> */}

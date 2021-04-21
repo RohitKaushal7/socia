@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import FollowButton from "../../components/molecules/buttons/FollowButton";
 import LogoutButton from "../../components/molecules/buttons/LogoutButton";
+import Post from "../../components/molecules/Cards/Post";
 import EditProfile from "../../components/organisms/Forms/EditProfile/EditProfile";
 import { useAppContext } from "../../context/AppContext";
 import { useGetPosts } from "../../hooks/api/posts";
@@ -61,16 +63,16 @@ export default function Profile() {
             </main>
             <div className="py-4 w-full max-w-4xl m-auto">
               <div className="post-actions my-3">
-                <button className="text-yellow-300">Create New Post</button>
+                <Link to="/create">
+                  <button className="text-yellow-300">Create New Post</button>
+                </Link>
               </div>
               <section className="flex flex-col justify-center items-center ">
                 {postsQuery.data?.pages
                   .map((page) => page.posts)
                   .flat()
                   .map((post) => (
-                    <div className="post p-4 my-2 bg-gray-700 rounded min-w-full">
-                      {post.text}
-                    </div>
+                    <Post post={post} linked key={post.id} />
                   ))}
               </section>
             </div>
