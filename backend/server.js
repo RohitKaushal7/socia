@@ -22,6 +22,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// STATIC
+app.use(express.static(path.resolve("..", "frontend", "build")));
+
 // ROUTING
 const authRoutes = require("./routes/auth");
 
