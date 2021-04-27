@@ -11,7 +11,7 @@ export default function FeedScreen({}) {
 
   return (
     <div className="bg-gray-800   text-white">
-      <div className="container min-h-screen m-auto max-w-6xl p-16">
+      <div className="container min-h-screen m-auto max-w-6xl py-16 px-4">
         <header className="flex justify-between">
           <h1 className="text-3xl">Socia</h1>
           <div className="user flex items-center justify-between">

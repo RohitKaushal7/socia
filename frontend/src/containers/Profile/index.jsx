@@ -25,7 +25,7 @@ export default function Profile() {
 
   return user ? (
     <div className="bg-gray-800   text-white">
-      <div className="container min-h-screen m-auto max-w-6xl">
+      <div className="container min-h-screen m-auto max-w-6xl px-4">
         <header className="p-4 py-16 flex justify-between items-center">
           <div className="user flex items-center justify-between">
             <div className="info ml-5">
@@ -55,10 +55,12 @@ export default function Profile() {
               <div className="info py-4 flex flex-col items-center">
                 <div className="name text-2xl">{user.name}</div>
                 {/* <div className="username text-gray-200">@rohitkaushal</div> */}
-                <div className="actions py-4">
-                  {/* <FollowButton className="text-blue-400" /> */}
+                {/* <div className="actions py-4">
+                  <FollowButton className="text-blue-400" />
+                </div> */}
+                <div className="bio max-w-4xl py-4 text-center text-gray-300">
+                  {user.bio}
                 </div>
-                <div className="bio max-w-4xl py-4 text-center">{user.bio}</div>
               </div>
             </main>
             <div className="py-4 w-full max-w-4xl m-auto">

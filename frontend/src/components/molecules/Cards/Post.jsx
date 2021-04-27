@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import RelativeTime from "dayjs/plugin/relativeTime";
+import marked from "marked";
+import "./Post.scss";
 dayjs.extend(RelativeTime);
 
 export default function Post({ post, linked }) {
@@ -33,7 +35,10 @@ export default function Post({ post, linked }) {
               </div>
             </div>
           </header>
-          <p className="py-2">{post.text}</p>
+          <div
+            className="py-2"
+            dangerouslySetInnerHTML={{ __html: marked(post.text) }}
+          ></div>
         </div>
       </MyLink>
     </div>
