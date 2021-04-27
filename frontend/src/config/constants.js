@@ -1,2 +1,2 @@
-export const API_BASE_URL = "http://localhost:5000";
-export const API_GRAPH_URL = "http://localhost:5000/graphql";
+export const API_BASE_URL = "/api";
+export const API_GRAPH_URL = "/graphql";

@@ -23,12 +23,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // STATIC
-app.use(express.static(path.resolve("..", "frontend", "build")));
+app.use(express.static(path.resolve("public")));
 
 // ROUTING
 const authRoutes = require("./routes/auth");
 
-app.use(authRoutes);
+app.use("/api", authRoutes);
 
 // LISTEN
 server.listen(PORT, () => {
