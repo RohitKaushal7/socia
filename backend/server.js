@@ -27,8 +27,12 @@ app.use(express.static(path.resolve("public")));
 
 // ROUTING
 const authRoutes = require("./routes/auth");
-
 app.use("/api", authRoutes);
+
+// SPA
+app.use("/*", (req, res) => {
+  res.sendFile(path.resolve("public", "index.html"));
+});
 
 // LISTEN
 server.listen(PORT, () => {
