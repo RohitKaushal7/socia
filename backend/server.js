@@ -27,12 +27,16 @@ app.use(express.static(path.resolve("public")));
 
 // ROUTING
 const authRoutes = require("./routes/auth");
+const { initChat } = require("./sockets");
 app.use("/api", authRoutes);
 
 // SPA
 app.use("/*", (req, res) => {
   res.sendFile(path.resolve("public", "index.html"));
 });
+
+// CHAT
+initChat(server);
 
 // LISTEN
 server.listen(PORT, () => {

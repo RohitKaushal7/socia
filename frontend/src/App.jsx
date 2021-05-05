@@ -7,6 +7,7 @@ import Profile from "./containers/Profile";
 import CreatePostScreen from "./containers/CreatePostScreen";
 import PostScreen from "./containers/PostScreen";
 import FeedScreen from "./containers/FeedScreen";
+import ChatScreen from "./containers/Chat";
 
 export default function App() {
   const { authToken, setAuthToken, setCurrentUser } = useAppContext();
@@ -44,6 +45,7 @@ export default function App() {
         )}
         {authToken && <Route exact path="/post/:id" component={PostScreen} />}
         {authToken && <Route exact path="/feed" component={FeedScreen} />}
+        {authToken && <Route exact path="/chat" component={ChatScreen} />}
       </Switch>
     </BrowserRouter>
   );

@@ -12,7 +12,7 @@ export default function Auth() {
   // RENDER
   return (
     <div className="loginPage bg-gray-800">
-      <div className="flex flex-col justify-center items-center w-full h-screen max-w-md m-auto">
+      <div className="flex flex-col justify-center items-center w-full h-screen max-w-md m-auto px-4">
         {signUp ? <SignUpForm /> : <SignInForm />}
         <div className="text-mono text-white text-xs p-2">
           {signUp ? (
